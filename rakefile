@@ -1,0 +1,11 @@
+task :default => ["smoketest:run"]
+
+namespace :smoketest do
+
+	desc "Run Selenium Smoke Test from Sauce Service"
+	task :run do
+		file = ENV["FILE_NAME"] || 'test_facebook.rb'
+		load(file)
+	end
+
+end
