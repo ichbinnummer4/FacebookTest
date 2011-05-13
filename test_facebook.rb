@@ -3,6 +3,10 @@ require "test/unit"
 require "rubygems"
 gem "sauce", ">=0.9.0"
 require "sauce"
+require "yaml"
+
+# read Sauce OnDemand credentials
+yml = YAML::load(File.open('ondemand.yml'))
 
 Sauce.config do |config|
   config.browser_url = "http://www.facebook.com/"
@@ -10,6 +14,8 @@ Sauce.config do |config|
 	["Linux", "firefox", "3.6."],
 	["Windows 2003", "iexplore", "8"]
   ]
+  config.username = yml[:username]
+  config.access_key = yml[:api_key]
 end
 
 class FacebookTest < Sauce::TestCase
