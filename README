@@ -1,0 +1,5 @@
+How To Use:
+	- ondemand.yml is for storing username and api_key of Sauce Lab account
+	- test_facebook.rb contains 3 test in total (login, logout, change_status), and a basic Login class used as :before
+	- it's using Test::Unit instead of Rspec or cucumber
+	- just execute rake, by default it will load and run the only source file test_facebook.rb
