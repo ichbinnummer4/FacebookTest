@@ -2,8 +2,15 @@ task :default => ["smoketest:run"]
 
 namespace :smoketest do
 
+	desc "Configure your Sauce OnDemand credentials"
+	task :config do
+		require 'yaml'
+		yml = YAML::load(File.open('ondemand.yml'))
+		system "sauce config #{yml[:username]} #{yml[:api_key]}"
+	end
+
 	desc "Run Selenium Smoke Test from Sauce Service"
-	task :run do
+	task :run => :config do
 		file = ENV["FILE_NAME"] || 'test_facebook.rb'
 		load(file)
 	end
